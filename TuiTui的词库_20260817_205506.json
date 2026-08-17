@@ -1,0 +1,1403 @@
+{
+  "fileName": "TuiTui的词库",
+  "categories": [
+    {
+      "name": "服饰",
+      "enabled": true,
+      "tags": [
+        {
+          "tag": "alternate costume",
+          "added": 1786462779892
+        },
+        {
+          "tag": "kneehighs",
+          "added": 1786546004664
+        },
+        {
+          "tag": "white socks",
+          "added": 1786546013586
+        },
+        {
+          "tag": "socks",
+          "added": 1786546017334
+        },
+        {
+          "tag": "bow",
+          "added": 1786562151147
+        },
+        {
+          "tag": "ribbon",
+          "added": 1786612224630
+        },
+        {
+          "tag": "glasses",
+          "added": 1640000004022
+        },
+        {
+          "tag": "sunglasses",
+          "added": 1640000004023
+        },
+        {
+          "tag": "goggles",
+          "added": 1640000004024
+        },
+        {
+          "tag": "monocle",
+          "added": 1640000004025
+        },
+        {
+          "tag": "mask",
+          "added": 1640000004026
+        },
+        {
+          "tag": "surgical_mask",
+          "added": 1640000004028
+        },
+        {
+          "tag": "jewelry",
+          "added": 1786614215569
+        },
+        {
+          "tag": "shawl",
+          "added": 1786614428757
+        },
+        {
+          "tag": "hair ornament",
+          "added": 1786541182079
+        },
+        {
+          "tag": "tiara",
+          "added": 1786541223940
+        },
+        {
+          "tag": "hair ribbon",
+          "added": 1786562136305
+        },
+        {
+          "tag": "hair bow",
+          "added": 1786562142833
+        },
+        {
+          "tag": "ring",
+          "added": 1786614700679
+        },
+        {
+          "tag": "circlet",
+          "added": 1786614729515
+        },
+        {
+          "tag": "earrings",
+          "added": 1640000004011
+        },
+        {
+          "tag": "necktie",
+          "added": 1786615654234
+        },
+        {
+          "tag": "shirt",
+          "added": 1786615661909
+        },
+        {
+          "tag": "school uniform",
+          "added": 1786615665609
+        },
+        {
+          "tag": "hairclip",
+          "added": 1786615675906
+        },
+        {
+          "tag": "white shirt",
+          "added": 1786615683196
+        },
+        {
+          "tag": "red necktie",
+          "added": 1786615696919
+        },
+        {
+          "tag": "dress shirt",
+          "added": 1786615718372
+        },
+        {
+          "tag": "collared shirt",
+          "added": 1786615722884
+        },
+        {
+          "tag": "black sweater",
+          "added": 1786615745476
+        },
+        {
+          "tag": "hood",
+          "added": 1786615752816
+        },
+        {
+          "tag": "fingerless gloves",
+          "added": 1786615960556
+        },
+        {
+          "tag": "gloves",
+          "added": 1786615962264
+        },
+        {
+          "tag": "headset",
+          "added": 1786616094986
+        },
+        {
+          "tag": "blue gloves",
+          "added": 1786616121001
+        },
+        {
+          "tag": "headphones",
+          "added": 1786616132122
+        },
+        {
+          "tag": "blue sports bra",
+          "added": 1786616163474
+        },
+        {
+          "tag": "sports bra",
+          "added": 1786616177713
+        },
+        {
+          "tag": "crop top",
+          "added": 1786616200118
+        },
+        {
+          "tag": "bra",
+          "added": 1786616538295
+        },
+        {
+          "tag": "underwear",
+          "added": 1786616551804
+        },
+        {
+          "tag": "skirt",
+          "added": 1786616562452
+        },
+        {
+          "tag": "white bra",
+          "added": 1786616599100
+        },
+        {
+          "tag": "yellow bra",
+          "added": 1786616607954
+        },
+        {
+          "tag": "bowtie",
+          "added": 1786616610899
+        },
+        {
+          "tag": "thighhighs",
+          "added": 1786616762824
+        },
+        {
+          "tag": "white thighhighs",
+          "added": 1786616767194
+        },
+        {
+          "tag": "detached sleeves",
+          "added": 1786616802941
+        },
+        {
+          "tag": "star hair ornament",
+          "added": 1786616823128
+        },
+        {
+          "tag": "choker",
+          "added": 1786616926434
+        },
+        {
+          "tag": "black panties",
+          "added": 1786616935249
+        },
+        {
+          "tag": "black bra",
+          "added": 1786616960454
+        },
+        {
+          "tag": "black bikini",
+          "added": 1786616989330
+        },
+        {
+          "tag": "black sleeves",
+          "added": 1786617042723
+        },
+        {
+          "tag": "star choker",
+          "added": 1786617057586
+        },
+        {
+          "tag": "black choker",
+          "added": 1786617060942
+        },
+        {
+          "tag": "black necktie",
+          "added": 1786624901909
+        },
+        {
+          "tag": "black pants",
+          "added": 1786624906063
+        },
+        {
+          "tag": "shirt tucked in",
+          "added": 1786624925579
+        },
+        {
+          "tag": "long sleeves",
+          "added": 1786624929171
+        },
+        {
+          "tag": "pantyhose",
+          "added": 1786792128069
+        },
+        {
+          "tag": "white pantyhose",
+          "added": 1786792146932
+        },
+        {
+          "tag": "leotard",
+          "added": 1786792190717
+        },
+        {
+          "tag": "official alternate costume",
+          "added": 1786792202002
+        },
+        {
+          "tag": "swimsuit",
+          "added": 1786792831962
+        },
+        {
+          "tag": "one-piece swimsuit",
+          "added": 1786792835902
+        },
+        {
+          "tag": "red one-piece swimsuit",
+          "added": 1786792839646
+        },
+        {
+          "tag": "casual one-piece swimsuit",
+          "added": 1786792956188
+        },
+        {
+          "tag": "thigh strap",
+          "added": 1786792982554
+        },
+        {
+          "tag": "highleg swimsuit",
+          "added": 1786793355864
+        },
+        {
+          "tag": "competition swimsuit",
+          "added": 1786793704498
+        },
+        {
+          "tag": "highleg",
+          "added": 1786793712404
+        },
+        {
+          "tag": "blue one-piece swimsuit",
+          "added": 1786793765845
+        },
+        {
+          "tag": "white one-piece swimsuit",
+          "added": 1786793770662
+        },
+        {
+          "tag": "pleated skirt",
+          "added": 1786796511022
+        },
+        {
+          "tag": "black skirt",
+          "added": 1786796521585
+        },
+        {
+          "tag": "miniskirt",
+          "added": 1786796540726
+        },
+        {
+          "tag": "loose socks",
+          "added": 1786796565485
+        },
+        {
+          "tag": "short sleeves",
+          "added": 1786796575878
+        },
+        {
+          "tag": "microskirt",
+          "added": 1786796587685
+        },
+        {
+          "tag": "hair rings",
+          "added": 1786810498026
+        },
+        {
+          "tag": "blue shirt",
+          "added": 1786810516967
+        },
+        {
+          "tag": "single hair ring",
+          "added": 1786810533522
+        },
+        {
+          "tag": "sleeveless shirt",
+          "added": 1786810543665
+        },
+        {
+          "tag": "sleeveless",
+          "added": 1786810546755
+        }
+      ],
+      "sortMode": "alphabetical"
+    },
+    {
+      "name": "服饰状态",
+      "enabled": false,
+      "tags": [
+        {
+          "tag": "open shirt",
+          "added": 1786616641465
+        },
+        {
+          "tag": "open clothes",
+          "added": 1786616659264
+        },
+        {
+          "tag": "bra pull",
+          "added": 1786616941745
+        },
+        {
+          "tag": "clothes pull",
+          "added": 1786617038683
+        },
+        {
+          "tag": "panties aside",
+          "added": 1786617048153
+        },
+        {
+          "tag": "torn clothes",
+          "added": 1786792112622
+        },
+        {
+          "tag": "torn pantyhose",
+          "added": 1786792198239
+        },
+        {
+          "tag": "swimsuit aside",
+          "added": 1786792887061
+        },
+        {
+          "tag": "clothing aside",
+          "added": 1786792893285
+        },
+        {
+          "tag": "one-piece swimsuit pull",
+          "added": 1786792978333
+        },
+        {
+          "tag": "covered navel",
+          "added": 1786793465945
+        },
+        {
+          "tag": "covered nipples",
+          "added": 1786793800943
+        },
+        {
+          "tag": "back cutout",
+          "added": 1786793807701
+        }
+      ],
+      "sortMode": "alphabetical"
+    },
+    {
+      "name": "瞳色",
+      "enabled": true,
+      "tags": [
+        {
+          "tag": "blue_eyes",
+          "added": 1640000001000
+        },
+        {
+          "tag": "red_eyes",
+          "added": 1640000001001
+        },
+        {
+          "tag": "green_eyes",
+          "added": 1640000001002
+        },
+        {
+          "tag": "brown_eyes",
+          "added": 1640000001003
+        },
+        {
+          "tag": "purple_eyes",
+          "added": 1640000001004
+        },
+        {
+          "tag": "pink_eyes",
+          "added": 1640000001005
+        },
+        {
+          "tag": "yellow_eyes",
+          "added": 1640000001006
+        },
+        {
+          "tag": "orange_eyes",
+          "added": 1640000001007
+        },
+        {
+          "tag": "grey_eyes",
+          "added": 1640000001008
+        },
+        {
+          "tag": "gray_eyes",
+          "added": 1640000001009
+        },
+        {
+          "tag": "silver_eyes",
+          "added": 1640000001010
+        },
+        {
+          "tag": "black_eyes",
+          "added": 1640000001011
+        },
+        {
+          "tag": "white_eyes",
+          "added": 1640000001012
+        },
+        {
+          "tag": "cyan_eyes",
+          "added": 1640000001013
+        },
+        {
+          "tag": "aqua_eyes",
+          "added": 1640000001014
+        },
+        {
+          "tag": "teal_eyes",
+          "added": 1640000001015
+        },
+        {
+          "tag": "magenta_eyes",
+          "added": 1640000001016
+        },
+        {
+          "tag": "gold_eyes",
+          "added": 1640000001017
+        },
+        {
+          "tag": "amber_eyes",
+          "added": 1640000001018
+        },
+        {
+          "tag": "heterochromia",
+          "added": 1640000001019
+        },
+        {
+          "tag": "different_colored_eyes",
+          "added": 1640000001020
+        },
+        {
+          "tag": "closed_eyes",
+          "added": 1640000001021
+        },
+        {
+          "tag": "half-closed_eyes",
+          "added": 1640000001022
+        },
+        {
+          "tag": "glowing_eyes",
+          "added": 1640000001023
+        },
+        {
+          "tag": "blue eyes",
+          "added": 1786462149168
+        },
+        {
+          "tag": "brown eyes",
+          "added": 1786463685268
+        },
+        {
+          "tag": "yellow eyes",
+          "added": 1786463734399
+        },
+        {
+          "tag": "grey eyes",
+          "added": 1786471264968
+        },
+        {
+          "tag": "purple eyes",
+          "added": 1786541138153
+        },
+        {
+          "tag": "red eyes",
+          "added": 1786543935929
+        },
+        {
+          "tag": "green eyes",
+          "added": 1786614246577
+        },
+        {
+          "tag": "pink eyes",
+          "added": 1786616973887
+        },
+        {
+          "tag": "black eyes",
+          "added": 1786793777508
+        }
+      ],
+      "sortMode": "alphabetical"
+    },
+    {
+      "name": "发色",
+      "enabled": true,
+      "tags": [
+        {
+          "tag": "black_hair",
+          "added": 1640000000000
+        },
+        {
+          "tag": "blonde_hair",
+          "added": 1640000000001
+        },
+        {
+          "tag": "brown_hair",
+          "added": 1640000000002
+        },
+        {
+          "tag": "red_hair",
+          "added": 1640000000003
+        },
+        {
+          "tag": "white_hair",
+          "added": 1640000000004
+        },
+        {
+          "tag": "silver_hair",
+          "added": 1640000000005
+        },
+        {
+          "tag": "grey_hair",
+          "added": 1640000000006
+        },
+        {
+          "tag": "gray_hair",
+          "added": 1640000000007
+        },
+        {
+          "tag": "blue_hair",
+          "added": 1640000000008
+        },
+        {
+          "tag": "green_hair",
+          "added": 1640000000009
+        },
+        {
+          "tag": "purple_hair",
+          "added": 1640000000010
+        },
+        {
+          "tag": "pink_hair",
+          "added": 1640000000011
+        },
+        {
+          "tag": "orange_hair",
+          "added": 1640000000012
+        },
+        {
+          "tag": "yellow_hair",
+          "added": 1640000000013
+        },
+        {
+          "tag": "cyan_hair",
+          "added": 1640000000014
+        },
+        {
+          "tag": "aqua_hair",
+          "added": 1640000000015
+        },
+        {
+          "tag": "teal_hair",
+          "added": 1640000000016
+        },
+        {
+          "tag": "magenta_hair",
+          "added": 1640000000017
+        },
+        {
+          "tag": "rainbow_hair",
+          "added": 1640000000018
+        },
+        {
+          "tag": "multicolored_hair",
+          "added": 1640000000019
+        },
+        {
+          "tag": "two-tone_hair",
+          "added": 1640000000020
+        },
+        {
+          "tag": "streaked_hair",
+          "added": 1640000000021
+        },
+        {
+          "tag": "dark_skin",
+          "added": 1640000000022
+        },
+        {
+          "tag": "pale_skin",
+          "added": 1640000000023
+        },
+        {
+          "tag": "tan_skin",
+          "added": 1640000000024
+        },
+        {
+          "tag": "fair_skin",
+          "added": 1640000000025
+        },
+        {
+          "tag": "purple hair",
+          "added": 1786462036492
+        },
+        {
+          "tag": "multicolored hair",
+          "added": 1786462166843
+        },
+        {
+          "tag": "blue hair",
+          "added": 1786462203416
+        },
+        {
+          "tag": "gradient hair",
+          "added": 1786462252916
+        },
+        {
+          "tag": "white hair",
+          "added": 1786471185973
+        },
+        {
+          "tag": "pink hair",
+          "added": 1786561966571
+        },
+        {
+          "tag": "black hair",
+          "added": 1786614241330
+        },
+        {
+          "tag": "orange hair",
+          "added": 1786615966723
+        },
+        {
+          "tag": "brown hair",
+          "added": 1786616528530
+        },
+        {
+          "tag": "grey hair",
+          "added": 1786616782353
+        },
+        {
+          "tag": "red hair",
+          "added": 1786624897095
+        },
+        {
+          "tag": "light blue hair",
+          "added": 1786792157793
+        }
+      ],
+      "sortMode": "alphabetical"
+    },
+    {
+      "name": "发型",
+      "enabled": true,
+      "tags": [
+        {
+          "tag": "short_hair",
+          "added": 1640000002000
+        },
+        {
+          "tag": "long_hair",
+          "added": 1640000002001
+        },
+        {
+          "tag": "medium_hair",
+          "added": 1640000002002
+        },
+        {
+          "tag": "very_long_hair",
+          "added": 1640000002003
+        },
+        {
+          "tag": "straight_hair",
+          "added": 1640000002004
+        },
+        {
+          "tag": "curly_hair",
+          "added": 1640000002005
+        },
+        {
+          "tag": "wavy_hair",
+          "added": 1640000002006
+        },
+        {
+          "tag": "spiky_hair",
+          "added": 1640000002007
+        },
+        {
+          "tag": "ponytail",
+          "added": 1640000002008
+        },
+        {
+          "tag": "twin_tails",
+          "added": 1640000002009
+        },
+        {
+          "tag": "drill_hair",
+          "added": 1640000002010
+        },
+        {
+          "tag": "bob_cut",
+          "added": 1640000002011
+        },
+        {
+          "tag": "bowl_cut",
+          "added": 1640000002012
+        },
+        {
+          "tag": "pixie_cut",
+          "added": 1640000002013
+        },
+        {
+          "tag": "bangs",
+          "added": 1640000002014
+        },
+        {
+          "tag": "side_bangs",
+          "added": 1640000002015
+        },
+        {
+          "tag": "fringe",
+          "added": 1640000002016
+        },
+        {
+          "tag": "ahoge",
+          "added": 1640000002017
+        },
+        {
+          "tag": "odango",
+          "added": 1640000002018
+        },
+        {
+          "tag": "bun",
+          "added": 1640000002019
+        },
+        {
+          "tag": "hair_bun",
+          "added": 1640000002020
+        },
+        {
+          "tag": "braid",
+          "added": 1640000002021
+        },
+        {
+          "tag": "twin_braids",
+          "added": 1640000002022
+        },
+        {
+          "tag": "side_ponytail",
+          "added": 1640000002023
+        },
+        {
+          "tag": "low_ponytail",
+          "added": 1640000002024
+        },
+        {
+          "tag": "high_ponytail",
+          "added": 1640000002025
+        },
+        {
+          "tag": "messy_hair",
+          "added": 1640000002026
+        },
+        {
+          "tag": "bedhead",
+          "added": 1640000002027
+        },
+        {
+          "tag": "slicked_back",
+          "added": 1640000002028
+        },
+        {
+          "tag": "parted_hair",
+          "added": 1640000002029
+        },
+        {
+          "tag": "side_parting",
+          "added": 1640000002031
+        },
+        {
+          "tag": "forehead",
+          "added": 1640000002032
+        },
+        {
+          "tag": "hair_over_eyes",
+          "added": 1640000002033
+        },
+        {
+          "tag": "hair_between_eyes",
+          "added": 1640000002034
+        },
+        {
+          "tag": "bald",
+          "added": 1640000002035
+        },
+        {
+          "tag": "shaved_head",
+          "added": 1640000002036
+        },
+        {
+          "tag": "long hair",
+          "added": 1786462172032
+        },
+        {
+          "tag": "short hair",
+          "added": 1786462662388
+        },
+        {
+          "tag": "hair between eyes",
+          "added": 1786463566469
+        },
+        {
+          "tag": "sidelocks",
+          "added": 1786463760334
+        },
+        {
+          "tag": "twintails",
+          "added": 1786471223637
+        },
+        {
+          "tag": "medium hair",
+          "added": 1786541242131
+        },
+        {
+          "tag": "very long hair",
+          "added": 1786543967799
+        },
+        {
+          "tag": "antenna hair",
+          "added": 1786562075733
+        },
+        {
+          "tag": "hair intakes",
+          "added": 1786562089654
+        },
+        {
+          "tag": "parted bangs",
+          "added": 1786614366677
+        },
+        {
+          "tag": "streaked hair",
+          "added": 1786616957168
+        },
+        {
+          "tag": "two side up",
+          "added": 1786616979412
+        },
+        {
+          "tag": "alternate breast size",
+          "added": 1786624890336
+        },
+        {
+          "tag": "braided ponytail",
+          "added": 1786624937643
+        },
+        {
+          "tag": "side braid",
+          "added": 1786796554661
+        }
+      ],
+      "sortMode": "alphabetical"
+    },
+    {
+      "name": "面部特征",
+      "enabled": true,
+      "tags": [
+        {
+          "tag": "fangs",
+          "added": 1640000004008
+        },
+        {
+          "tag": "sharp_teeth",
+          "added": 1640000004009
+        },
+        {
+          "tag": "thick_eyebrows",
+          "added": 1640000004013
+        },
+        {
+          "tag": "long_eyelashes",
+          "added": 1640000004016
+        },
+        {
+          "tag": "freckles",
+          "added": 1640000004017
+        },
+        {
+          "tag": "mole",
+          "added": 1640000004018
+        },
+        {
+          "tag": "scar",
+          "added": 1640000004020
+        },
+        {
+          "tag": "birthmark",
+          "added": 1640000004021
+        },
+        {
+          "tag": "makeup",
+          "added": 1786462229038
+        },
+        {
+          "tag": "purple lips",
+          "added": 1786462257561
+        },
+        {
+          "tag": "purple eyeshadow",
+          "added": 1786462262536
+        },
+        {
+          "tag": "mole under mouth",
+          "added": 1786462684456
+        },
+        {
+          "tag": "lipstick",
+          "added": 1786614447736
+        },
+        {
+          "tag": "skin fang",
+          "added": 1786617024103
+        },
+        {
+          "tag": "runny makeup",
+          "added": 1786617277425
+        },
+        {
+          "tag": "fang",
+          "added": 1786793367875
+        },
+        {
+          "tag": "thick eyebrows",
+          "added": 1786796529895
+        }
+      ],
+      "sortMode": "alphabetical"
+    },
+    {
+      "name": "身体特征",
+      "enabled": true,
+      "tags": [
+        {
+          "tag": "small_breasts",
+          "added": 1640000003000
+        },
+        {
+          "tag": "large_breasts",
+          "added": 1640000003001
+        },
+        {
+          "tag": "medium_breasts",
+          "added": 1640000003002
+        },
+        {
+          "tag": "flat_chest",
+          "added": 1640000003003
+        },
+        {
+          "tag": "huge_breasts",
+          "added": 1640000003004
+        },
+        {
+          "tag": "petite",
+          "added": 1640000003005
+        },
+        {
+          "tag": "tall",
+          "added": 1640000003006
+        },
+        {
+          "tag": "short",
+          "added": 1640000003007
+        },
+        {
+          "tag": "chubby",
+          "added": 1640000003008
+        },
+        {
+          "tag": "skinny",
+          "added": 1640000003010
+        },
+        {
+          "tag": "slender",
+          "added": 1640000003011
+        },
+        {
+          "tag": "muscular",
+          "added": 1640000003012
+        },
+        {
+          "tag": "athletic",
+          "added": 1640000003013
+        },
+        {
+          "tag": "hourglass_figure",
+          "added": 1640000003015
+        },
+        {
+          "tag": "pear_shaped",
+          "added": 1640000003016
+        },
+        {
+          "tag": "apple_shaped",
+          "added": 1640000003017
+        },
+        {
+          "tag": "broad_shoulders",
+          "added": 1640000003018
+        },
+        {
+          "tag": "narrow_shoulders",
+          "added": 1640000003019
+        },
+        {
+          "tag": "wide_hips",
+          "added": 1640000003020
+        },
+        {
+          "tag": "fat",
+          "added": 1640000003021
+        },
+        {
+          "tag": "underweight",
+          "added": 1640000003023
+        },
+        {
+          "tag": "voluptuous",
+          "added": 1640000003024
+        },
+        {
+          "tag": "abs",
+          "added": 1640000003025
+        },
+        {
+          "tag": "six_pack",
+          "added": 1640000003026
+        },
+        {
+          "tag": "toned",
+          "added": 1640000003027
+        },
+        {
+          "tag": "thin",
+          "added": 1640000003030
+        },
+        {
+          "tag": "breasts",
+          "added": 1786461976905
+        },
+        {
+          "tag": "dark skin",
+          "added": 1786462008669
+        },
+        {
+          "tag": "large breasts",
+          "added": 1786462020838
+        },
+        {
+          "tag": "animal ears",
+          "added": 1786462029911
+        },
+        {
+          "tag": "rabbit ears",
+          "added": 1786462117331
+        },
+        {
+          "tag": "nail polish",
+          "added": 1786462120382
+        },
+        {
+          "tag": "toenails",
+          "added": 1786462129563
+        },
+        {
+          "tag": "purple nails",
+          "added": 1786462153001
+        },
+        {
+          "tag": "black nails",
+          "added": 1786462178840
+        },
+        {
+          "tag": "toenail polish",
+          "added": 1786462184090
+        },
+        {
+          "tag": "fingernails",
+          "added": 1786462196982
+        },
+        {
+          "tag": "tail",
+          "added": 1786462240468
+        },
+        {
+          "tag": "long fingernails",
+          "added": 1786462266483
+        },
+        {
+          "tag": "medium breasts",
+          "added": 1786462643015
+        },
+        {
+          "tag": "huge breasts",
+          "added": 1786463714794
+        },
+        {
+          "tag": "piercing",
+          "added": 1786463780335
+        },
+        {
+          "tag": "dark-skinned female",
+          "added": 1786471251379
+        },
+        {
+          "tag": "large areolae",
+          "added": 1786544040181
+        },
+        {
+          "tag": "female pubic hair",
+          "added": 1786614254055
+        },
+        {
+          "tag": "green nails",
+          "added": 1786614297295
+        },
+        {
+          "tag": "forehead jewel",
+          "added": 1786614322938
+        },
+        {
+          "tag": "pale skin",
+          "added": 1786614552238
+        },
+        {
+          "tag": "pubic hair",
+          "added": 1786615045327
+        },
+        {
+          "tag": "virtual youtuber",
+          "added": 1786462000057
+        },
+        {
+          "tag": "dark-skinned male",
+          "added": 1786462013734
+        },
+        {
+          "tag": "interracial",
+          "added": 1786462113399
+        },
+        {
+          "tag": "rabbit girl",
+          "added": 1786543974512
+        },
+        {
+          "tag": "mature female",
+          "added": 1786614271740
+        },
+        {
+          "tag": "otoko no ko",
+          "added": 1786616077281
+        },
+        {
+          "tag": "yaoi",
+          "added": 1786616116225
+        },
+        {
+          "tag": "fat man",
+          "added": 1786616246703
+        },
+        {
+          "tag": "male pubic hair",
+          "added": 1786616519634
+        },
+        {
+          "tag": "small breasts",
+          "added": 1786616794568
+        },
+        {
+          "tag": "fox ears",
+          "added": 1786616856044
+        },
+        {
+          "tag": "animal ear fluff",
+          "added": 1786616864570
+        },
+        {
+          "tag": "fox girl",
+          "added": 1786616869199
+        },
+        {
+          "tag": "symbol-shaped pupils",
+          "added": 1786616917198
+        },
+        {
+          "tag": "heart-shaped pupils",
+          "added": 1786616920458
+        },
+        {
+          "tag": "very dark skin",
+          "added": 1786617283871
+        },
+        {
+          "tag": "bare shoulders",
+          "added": 1786792139942
+        },
+        {
+          "tag": "fox tail",
+          "added": 1786792848653
+        },
+        {
+          "tag": "infection monitor \\(arknights\\)",
+          "added": 1786793329448
+        },
+        {
+          "tag": "tan",
+          "added": 1786793680506
+        },
+        {
+          "tag": "tanlines",
+          "added": 1786793693079
+        },
+        {
+          "tag": "one-piece tan",
+          "added": 1786793751582
+        },
+        {
+          "tag": "tomboy",
+          "added": 1786793824269
+        },
+        {
+          "tag": "wolf ears",
+          "added": 1786796481808
+        },
+        {
+          "tag": "wolf tail",
+          "added": 1786796485353
+        },
+        {
+          "tag": "wolf girl",
+          "added": 1786796505460
+        },
+        {
+          "tag": "dog ears",
+          "added": 1786796515734
+        },
+        {
+          "tag": "dog tail",
+          "added": 1786796544450
+        },
+        {
+          "tag": "red nails",
+          "added": 1786796572622
+        }
+      ],
+      "sortMode": "alphabetical"
+    },
+    {
+      "name": "各种背景",
+      "enabled": false,
+      "tags": [
+        {
+          "tag": "white background",
+          "added": 1786462591082
+        },
+        {
+          "tag": "simple background",
+          "added": 1786462598247
+        },
+        {
+          "tag": "pink background",
+          "added": 1786471206372
+        },
+        {
+          "tag": "grey background",
+          "added": 1786543947141
+        }
+      ],
+      "sortMode": "alphabetical"
+    },
+    {
+      "name": "各种遮挡",
+      "enabled": true,
+      "tags": [
+        {
+          "tag": "censored",
+          "added": 1786541129192
+        },
+        {
+          "tag": "mosaic censoring",
+          "added": 1786541146597
+        },
+        {
+          "tag": "bar censor",
+          "added": 1786543803423
+        },
+        {
+          "tag": "novelty censor",
+          "added": 1786616191711
+        },
+        {
+          "tag": "blank censor",
+          "added": 1786616268807
+        },
+        {
+          "tag": "blur censor",
+          "added": 1786792216077
+        }
+      ],
+      "sortMode": "alphabetical"
+    },
+    {
+      "name": "画面内容",
+      "enabled": true,
+      "tags": [
+        {
+          "tag": "chinese text",
+          "added": 1786614417338
+        },
+        {
+          "tag": "artist name",
+          "added": 1786614563231
+        },
+        {
+          "tag": "korean text",
+          "added": 1786616149030
+        },
+        {
+          "tag": "star \\(symbol\\)",
+          "added": 1786616848583
+        },
+        {
+          "tag": "flower",
+          "added": 1786617033609
+        },
+        {
+          "tag": "english text",
+          "added": 1786617248409
+        },
+        {
+          "tag": "profanity",
+          "added": 1786617388131
+        }
+      ],
+      "sortMode": "alphabetical"
+    }
+  ]
+}
