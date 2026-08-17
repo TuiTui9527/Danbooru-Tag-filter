@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danbooru 标签筛选器</title>
     <style>
-        /* ===== 样式与之前一致 ===== */
+        /* ===== 基础样式 (与之前一致) ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: #1e1e2f; font-family: 'Segoe UI', Roboto, system-ui, sans-serif; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; padding: 20px; color: #e0e0e0; }
         .container { max-width: 1000px; width: 100%; background: #2d2d44; border-radius: 24px; padding: 30px 35px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); border: 1px solid #3d3d5c; position: relative; }
@@ -123,6 +123,7 @@
         .tree-node .node-content .toggle-btn { width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #9090b0; transition: transform 0.2s; flex-shrink: 0; }
         .tree-node .node-content .toggle-btn.expanded { transform: rotate(90deg); }
         .tree-node .node-content .toggle-btn.placeholder { visibility: hidden; }
+        .tree-node .node-content .file-enable-check { width: 14px; height: 14px; accent-color: #6c5ce7; cursor: pointer; flex-shrink: 0; margin-left: 2px; }
         .tree-node .node-content .cat-enable-check { width: 14px; height: 14px; accent-color: #6c5ce7; cursor: pointer; flex-shrink: 0; margin-left: 2px; }
         .tree-node .node-content .icon { font-size: 16px; flex-shrink: 0; opacity: 0.8; }
         .tree-node .node-content .label { flex: 1; font-size: 13px; color: #d0d0e8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -227,6 +228,61 @@
         .dialog-box .btn-row .btn-confirm:hover { background: #00a381; }
         .dialog-box .btn-row .btn-cancel { background: #3d3d5c; color: #e0e0f0; }
         .dialog-box .btn-row .btn-cancel:hover { background: #4e4e72; }
+
+        /* ===== 管理标签对话框专用按钮样式 (已调整“新建”按钮对齐) ===== */
+        .tag-manage-dialog .dialog-box .new-cat-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .tag-manage-dialog .dialog-box .new-cat-row input {
+            flex: 1;
+        }
+        .tag-manage-dialog .dialog-box .new-cat-row button {
+            background: #00b894;
+            color: #fff;
+            border: none;
+            padding: 8px 18px;  /* 与输入框高度一致 */
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background 0.2s;
+            white-space: nowrap;
+            height: auto;
+            align-self: center;
+        }
+        .tag-manage-dialog .dialog-box .new-cat-row button:hover {
+            background: #00a381;
+        }
+
+        .tag-manage-dialog .dialog-box .btn-row .btn-delete {
+            background: #e17055;
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+        .tag-manage-dialog .dialog-box .btn-row .btn-delete:hover {
+            background: #d63031;
+        }
+
+        .tag-manage-dialog .dialog-box .btn-row .btn-save {
+            background: #00b894;
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+        .tag-manage-dialog .dialog-box .btn-row .btn-save:hover {
+            background: #00a381;
+        }
+
         .location-list { background: #1a1a2e; border-radius: 16px; padding: 12px; margin: 10px 0; max-height: 150px; overflow-y: auto; }
         .location-list .loc-item { padding: 4px 8px; font-size: 13px; color: #d0d0e8; border-bottom: 1px solid #3d3d5c; }
         .location-list .loc-item:last-child { border-bottom: none; }
@@ -293,7 +349,7 @@
         </div>
     </div>
 
-    <!-- 标签管理对话框 -->
+    <!-- ===== 标签管理对话框 (已优化按钮颜色与“新建”对齐) ===== -->
     <div class="tag-manage-dialog" id="tagManageDialog">
         <div class="dialog-box">
             <h3>⚙️ 管理标签</h3>
@@ -304,15 +360,15 @@
             <label style="margin-top:12px;">或新建分类：</label>
             <div class="new-cat-row">
                 <input type="text" id="manageNewCategoryInput" placeholder="新分类名称">
-                <button id="manageNewCategoryBtn">新建</button>
+                <button id="manageNewCategoryBtn">新建</button>  <!-- 绿色，与输入框平齐 -->
             </div>
             <div class="btn-row">
                 <div class="left-btns">
-                    <button class="btn-delete" id="manageDeleteBtn">🗑️ 删除</button>
+                    <button class="btn-delete" id="manageDeleteBtn">🗑️ 删除</button>  <!-- 红色 -->
                 </div>
                 <div class="right-btns">
                     <button class="btn-cancel" id="manageCancelBtn">取消</button>
-                    <button class="btn-save" id="manageSaveBtn">保存</button>
+                    <button class="btn-save" id="manageSaveBtn">保存</button>  <!-- 绿色 -->
                 </div>
             </div>
         </div>
@@ -365,14 +421,28 @@
         </div>
         <div class="help-panel" id="helpPanel">
             <h3>📤 输出框功能</h3>
-            <ul><li>标签输入与解析...</li><li>严格词库匹配筛选...</li><li>标签列表展示与交互...</li><li>拖拽调整顺序...</li><li>标签勾选与复制...</li><li>清空输入...</li><li>实时统计信息...</li><li>通知提示...</li><li>自动本地缓存...</li><li>输入框与输出框完全展开...</li><li>自动翻译（可关闭）...</li></ul>
+            <ul>
+                <li><strong>标签输入与解析</strong>：支持英文逗号、中文逗号、顿号分隔。</li>
+                <li><strong>严格词库匹配筛选</strong>：词库内标签初始“未勾选”，词库外默认勾选。</li>
+                <li><strong>标签列表展示与交互</strong>：每个标签显示复选框、名称、操作按钮。未勾选标红带删除线。</li>
+                <li><strong>拖拽调整顺序</strong>：拖拽标签卡片可调整顺序，复制时按新顺序输出。</li>
+                <li><strong>复制勾选标签</strong>：仅复制被勾选的标签（保留的标签）。</li>
+                <li><strong>复制未勾选标签</strong>：仅复制未被勾选的标签（被筛选掉的标签）。</li>
+                <li><strong>清空输入</strong>：一键清空输入框及标签列表。</li>
+                <li><strong>实时统计信息</strong>：显示总标签数、词库标签数、已勾选数、分隔符类型。</li>
+                <li><strong>通知提示</strong>：所有操作通过底部浮动Toast反馈。</li>
+                <li><strong>自动本地缓存</strong>：词库数据、输入内容、复选框状态自动保存在浏览器本地存储中。</li>
+                <li><strong>输入框与输出框完全展开</strong>：高度自适应，无滚动条。</li>
+                <li><strong>自动翻译（可关闭）</strong>：标签自动翻译为中文，显示在标签下方。</li>
+            </ul>
             <h3>📚 自定义词库功能</h3>
             <ul>
                 <li><strong>文件资源管理器风格</strong>：左侧树形展示文件及下属分类，点击箭头展开/收起。</li>
                 <li><strong>每个分类独立启用/禁用</strong>：左侧每个分类前有复选框，单独控制该分类是否参与筛选。</li>
+                <li><strong>文件级批量启用/禁用</strong>：每个文件（大文件夹）前有复选框，一键启用/禁用该文件下所有分类。</li>
                 <li><strong>重复标签提示</strong>：分类下存在重复标签时，分类名称文字变红。</li>
                 <li><strong>拖拽排序</strong>：文件之间、同一文件下的分类之间均可拖拽调整顺序。</li>
-                <li><strong>分类合并（跨文件）</strong>：右侧每个分类头部有 🔀 合并按钮，可将当前分类合并到任意其他文件中的分类（标签去重，源分类删除）。</li>
+                <li><strong>分类合并（跨文件）</strong>：右侧每个分类头部有 🔀 合并按钮，可将当前分类合并到任意其他文件中的分类。</li>
                 <li><strong>导入不合并</strong>：导入同名文件或分类时，不会合并，而是新增独立文件/分类（允许重名）。</li>
                 <li><strong>导出/导入兼容</strong>：导出的词库文件可正常导入，支持单文件数组格式和旧版单对象格式。</li>
             </ul>
@@ -395,6 +465,7 @@
             <button class="btn btn-primary" id="filterBtn">🔍 筛选 / 刷新</button>
             <button class="btn btn-secondary" id="clearBtn">🗑️ 清空</button>
             <button class="btn btn-success" id="copyBtn">📋 复制勾选标签</button>
+            <button class="btn btn-warning" id="copyUncheckedBtn">📋 复制未勾选标签</button>
         </div>
         <div class="stats" id="stats">
             <div>总标签: <strong id="totalCount">0</strong></div>
@@ -416,7 +487,7 @@
     <div class="modal-overlay" id="dictModal">
         <div class="modal">
             <h2>📚 词库管理 <button class="close-btn" id="closeModalBtn">&times;</button></h2>
-            <div class="modal-desc">左侧树形导航，右侧分类面板支持合并操作（🔀按钮，可跨文件）。</div>
+            <div class="modal-desc">左侧树形导航：文件前的复选框可一键启用/禁用该文件下所有分类。右侧分类面板支持合并操作（🔀按钮，可跨文件）。</div>
             <div class="modal-body">
                 <div class="file-sidebar">
                     <div class="sidebar-header"><span>📁 文件</span><span class="count" id="fileCount">0</span></div>
@@ -703,6 +774,7 @@
         const filterBtn = document.getElementById('filterBtn');
         const clearBtn = document.getElementById('clearBtn');
         const copyBtn = document.getElementById('copyBtn');
+        const copyUncheckedBtn = document.getElementById('copyUncheckedBtn');
         const resultContainer = document.getElementById('resultContainer');
         const totalCount = document.getElementById('totalCount');
         const appearanceCount = document.getElementById('appearanceCount');
@@ -1030,14 +1102,33 @@
             });
         }
 
-        function getSelectedOutput() {
-            const selected = currentTags.filter(item => item.checked).map(item => item.tag);
+        // ============================================================
+        // 构建输出字符串 (共用)
+        // ============================================================
+        function buildOutputFromItems(items, delimiter, stripSpace, addTrailing) {
+            const selected = items.map(item => item.tag);
             if (selected.length === 0) return '';
-            let sep = currentDelimiter;
-            if (stripSpaceCheck.checked) sep = sep.replace(/\s+$/, '');
+            let sep = delimiter;
+            if (stripSpace) {
+                sep = sep.replace(/\s+$/, '');
+            }
             let joined = selected.join(sep);
-            if (addTrailingCheck.checked && selected.length > 0) joined += sep;
+            if (addTrailing && selected.length > 0) {
+                joined += sep;
+            }
             return joined;
+        }
+
+        function getSelectedOutput() {
+            const stripSpace = stripSpaceCheck.checked;
+            const addTrailing = addTrailingCheck.checked;
+            return buildOutputFromItems(currentTags.filter(item => item.checked), currentDelimiter, stripSpace, addTrailing);
+        }
+
+        function getUncheckedOutput() {
+            const stripSpace = stripSpaceCheck.checked;
+            const addTrailing = addTrailingCheck.checked;
+            return buildOutputFromItems(currentTags.filter(item => !item.checked), currentDelimiter, stripSpace, addTrailing);
         }
 
         // ============================================================
@@ -1130,7 +1221,7 @@
         }
 
         // ============================================================
-        // 标签管理 (齿轮) - 不变
+        // 标签管理 (齿轮) - 管理标签对话框逻辑不变
         // ============================================================
         let manageTag = null;
         let manageTagLocation = null;
@@ -1485,7 +1576,6 @@
                 return;
             }
             if (fileData.length === 1) {
-                // 单个文件也导出为数组格式，方便导入
                 downloadFile(fileData[0]);
             } else {
                 exportFileSelect.innerHTML = '';
@@ -1508,7 +1598,6 @@
                 String(now.getMinutes()).padStart(2, '0') +
                 String(now.getSeconds()).padStart(2, '0');
             const filename = file.fileName + '_' + ts + '.json';
-            // 导出为数组格式（与导入格式一致）
             const dataStr = JSON.stringify([file], null, 2);
             const blob = new Blob([dataStr], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
@@ -1550,7 +1639,6 @@
                 try {
                     let imported = JSON.parse(e.target.result);
                     if (!Array.isArray(imported)) {
-                        // 兼容旧版单对象格式: { fileName, categories }
                         if (imported.fileName && imported.categories) {
                             imported = [imported];
                         } else {
@@ -1558,7 +1646,6 @@
                             return;
                         }
                     }
-                    // 验证每个元素是否包含 fileName 和 categories
                     let valid = true;
                     imported.forEach(item => {
                         if (!item.fileName || !Array.isArray(item.categories)) {
@@ -1609,7 +1696,7 @@
         }
 
         // ============================================================
-        // 树形导航渲染 + 拖拽排序 + 分类启用复选框
+        // 树形导航渲染 (包含文件级复选框)
         // ============================================================
         let dragData = null;
 
@@ -1665,6 +1752,35 @@
                 });
                 fileContent.appendChild(toggle);
 
+                // 文件级复选框
+                const fileCheckbox = document.createElement('input');
+                fileCheckbox.type = 'checkbox';
+                fileCheckbox.className = 'file-enable-check';
+                const allEnabled = file.categories.every(c => c.enabled !== false);
+                const allDisabled = file.categories.every(c => c.enabled === false);
+                fileCheckbox.checked = allEnabled;
+                if (!allEnabled && !allDisabled) {
+                    fileCheckbox.indeterminate = true;
+                }
+                fileCheckbox.title = '启用/禁用此文件下所有分类';
+                fileCheckbox.addEventListener('change', function(e) {
+                    e.stopPropagation();
+                    const checked = this.checked;
+                    file.categories.forEach(cat => {
+                        cat.enabled = checked;
+                    });
+                    appearanceSet = getAppearanceSet();
+                    renderSidebar();
+                    renderAllCategoryFolds();
+                    if (currentTags.length) {
+                        currentTags.forEach(item => item.isApp = isAppearanceTag(item.tag));
+                        renderTagItems(currentTags);
+                    }
+                    showToast(checked ? `文件 "${file.fileName}" 下所有分类已启用` : `文件 "${file.fileName}" 下所有分类已禁用`);
+                    saveToLocalStorage();
+                });
+                fileContent.appendChild(fileCheckbox);
+
                 const icon = document.createElement('span');
                 icon.className = 'icon';
                 icon.textContent = '📁';
@@ -1682,7 +1798,7 @@
                 fileContent.appendChild(badge);
 
                 fileContent.addEventListener('click', function(e) {
-                    if (e.target.closest('.toggle-btn') || e.target.closest('.cat-enable-check')) return;
+                    if (e.target.closest('.toggle-btn') || e.target.closest('.file-enable-check') || e.target.closest('.cat-enable-check')) return;
                     currentFileIndex = idx;
                     expandedFiles[idx] = true;
                     renderSidebar();
@@ -1885,7 +2001,7 @@
         }
 
         // ============================================================
-        // 右侧分类面板渲染
+        // 右侧分类面板渲染 (不变)
         // ============================================================
         function renderAllCategoryFolds() {
             allCategoriesContainer.innerHTML = '';
@@ -2244,6 +2360,7 @@
         // ============================================================
         filterBtn.addEventListener('click', function() { updateUI(); saveToLocalStorage(); });
         clearBtn.addEventListener('click', function() { inputText.value = ''; updateUI(); autoResizeTextarea(); saveToLocalStorage(); });
+
         copyBtn.addEventListener('click', function() {
             const output = getSelectedOutput();
             if (!output) { alert('没有勾选任何标签'); return; }
@@ -2261,6 +2378,25 @@
                 setTimeout(() => copyBtn.textContent = '📋 复制勾选标签', 1500);
             });
         });
+
+        copyUncheckedBtn.addEventListener('click', function() {
+            const output = getUncheckedOutput();
+            if (!output) { alert('没有未勾选的标签'); return; }
+            navigator.clipboard.writeText(output).then(() => {
+                copyUncheckedBtn.textContent = '✅ 已复制!';
+                setTimeout(() => copyUncheckedBtn.textContent = '📋 复制未勾选标签', 1500);
+            }).catch(() => {
+                const ta = document.createElement('textarea');
+                ta.value = output;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                copyUncheckedBtn.textContent = '✅ 已复制!';
+                setTimeout(() => copyUncheckedBtn.textContent = '📋 复制未勾选标签', 1500);
+            });
+        });
+
         let debounceTimer;
         inputText.addEventListener('input', function() {
             autoResizeTextarea();
@@ -2329,7 +2465,6 @@
         importDictBtn.addEventListener('click', importDictionary);
         importFileInput.addEventListener('change', handleImportFile);
 
-        // 导出选择对话框
         exportSelectCancelBtn.addEventListener('click', closeExportSelectDialog);
         exportSelectConfirmBtn.addEventListener('click', handleExportSelectConfirm);
         exportSelectDialog.addEventListener('click', function(e) {
