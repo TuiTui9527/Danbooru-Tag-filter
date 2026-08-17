@@ -374,7 +374,7 @@
                 <li><strong>拖拽排序</strong>：文件之间、同一文件下的分类之间均可拖拽调整顺序。</li>
                 <li><strong>分类合并（跨文件）</strong>：右侧每个分类头部有 🔀 合并按钮，可将当前分类合并到任意其他文件中的分类（标签去重，源分类删除）。</li>
                 <li><strong>导入不合并</strong>：导入同名文件或分类时，不会合并，而是新增独立文件/分类（允许重名）。</li>
-                <li><strong>导出单个文件</strong>：点击“导出词库”可弹出选择框，选择要导出的具体文件（若只有一个文件则直接导出），文件名末尾自动添加时间戳。</li>
+                <li><strong>导出/导入兼容</strong>：导出的词库文件可正常导入，支持单文件数组格式和旧版单对象格式。</li>
             </ul>
         </div>
 
@@ -1339,21 +1339,18 @@
         }
 
         // ============================================================
-        // 合并功能 - 跨文件合并 (核心修改)
+        // 合并功能 - 跨文件合并
         // ============================================================
         function openMergeDialog(fileIdx, catIdx) {
             const file = fileData[fileIdx];
             const cat = file.categories[catIdx];
             if (!cat) { showToast('分类不存在'); return; }
 
-            // 填充目标下拉：列出所有文件的所有分类（排除自身）
             mergeTargetSelect.innerHTML = '';
             fileData.forEach((f, fIdx) => {
                 f.categories.forEach((c, cIdx) => {
-                    // 跳过源分类自身
                     if (fIdx === fileIdx && cIdx === catIdx) return;
                     const opt = document.createElement('option');
-                    // 使用 fileIdx|categoryName 作为值（更安全，因为分类名可能重复但同一文件内唯一）
                     opt.value = fIdx + '|' + c.name;
                     opt.textContent = `[${f.fileName}] ${c.name}` + (c.enabled === false ? ' (禁用)' : '');
                     mergeTargetSelect.appendChild(opt);
@@ -1416,39 +1413,31 @@
                 return;
             }
 
-            // 确认合并
             if (!confirm(`确认将分类 "[${sourceFile.fileName}] ${sourceCat.name}" 合并到 "[${targetFile.fileName}] ${targetCat.name}" 吗？\n标签将去重合并，源分类将被删除。`)) {
                 return;
             }
 
-            // 合并标签 (去重)
             sourceCat.tags.forEach(tagObj => {
                 if (!targetCat.tags.some(t => t.tag.toLowerCase() === tagObj.tag.toLowerCase())) {
                     targetCat.tags.push(tagObj);
                 }
             });
 
-            // 删除源分类
             sourceFile.categories.splice(catIdx, 1);
 
-            // 清理 foldState
             const oldKey = fileIdx + '_' + sourceCat.name;
             delete foldState[oldKey];
 
-            // 更新全局
             appearanceSet = getAppearanceSet();
             buildTagLocations();
 
-            // 刷新界面
             renderSidebar();
             renderAllCategoryFolds();
 
-            // 如果当前文件索引超出范围，修正
             if (currentFileIndex >= fileData.length) {
                 currentFileIndex = Math.max(0, fileData.length - 1);
             }
 
-            // 更新主界面标签
             if (currentTags.length) {
                 currentTags.forEach(item => item.isApp = isAppearanceTag(item.tag));
                 renderTagItems(currentTags);
@@ -1488,7 +1477,7 @@
         }
 
         // ============================================================
-        // 导出功能: 选择具体文件导出 (文件名添加时间戳)
+        // 导出功能: 选择具体文件导出 (文件名添加时间戳) - 导出为数组格式
         // ============================================================
         function exportDictionary() {
             if (fileData.length === 0) {
@@ -1496,6 +1485,7 @@
                 return;
             }
             if (fileData.length === 1) {
+                // 单个文件也导出为数组格式，方便导入
                 downloadFile(fileData[0]);
             } else {
                 exportFileSelect.innerHTML = '';
@@ -1518,7 +1508,8 @@
                 String(now.getMinutes()).padStart(2, '0') +
                 String(now.getSeconds()).padStart(2, '0');
             const filename = file.fileName + '_' + ts + '.json';
-            const dataStr = JSON.stringify(file, null, 2);
+            // 导出为数组格式（与导入格式一致）
+            const dataStr = JSON.stringify([file], null, 2);
             const blob = new Blob([dataStr], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -1547,7 +1538,7 @@
         }
 
         // ============================================================
-        // 导入功能 (去除合并，直接添加新文件)
+        // 导入功能 (兼容单对象格式和数组格式)
         // ============================================================
         function importDictionary() { importFileInput.click(); }
 
@@ -1557,17 +1548,30 @@
             const reader = new FileReader();
             reader.onload = function(e) {
                 try {
-                    const imported = JSON.parse(e.target.result);
-                    if (!Array.isArray(imported)) { showToast('❌ 无效的词库文件：根不是数组'); return; }
-                    let importedFiles = [];
-                    if (imported.length > 0 && imported[0].categories && Array.isArray(imported[0].categories)) {
-                        importedFiles = imported;
-                    } else {
-                        const fileName = prompt('请输入此词库的文件名：', '导入词库');
-                        if (!fileName) return;
-                        importedFiles = [{ fileName: fileName, categories: imported }];
+                    let imported = JSON.parse(e.target.result);
+                    if (!Array.isArray(imported)) {
+                        // 兼容旧版单对象格式: { fileName, categories }
+                        if (imported.fileName && imported.categories) {
+                            imported = [imported];
+                        } else {
+                            showToast('❌ 无效的词库文件：缺少 fileName 或 categories 字段');
+                            return;
+                        }
                     }
-                    importedFiles.forEach(impFile => {
+                    // 验证每个元素是否包含 fileName 和 categories
+                    let valid = true;
+                    imported.forEach(item => {
+                        if (!item.fileName || !Array.isArray(item.categories)) {
+                            valid = false;
+                        }
+                    });
+                    if (!valid) {
+                        showToast('❌ 无效的词库文件：结构不正确');
+                        return;
+                    }
+
+                    let importedCount = 0;
+                    imported.forEach(impFile => {
                         const newFile = {
                             fileName: impFile.fileName,
                             categories: impFile.categories.map(cat => ({
@@ -1582,7 +1586,9 @@
                             const key = (fileData.length - 1) + '_' + cat.name;
                             foldState[key] = true;
                         });
+                        importedCount++;
                     });
+
                     appearanceSet = getAppearanceSet();
                     buildTagLocations();
                     renderCategoryManager();
@@ -1592,7 +1598,7 @@
                     }
                     currentFileIndex = fileData.length - 1;
                     renderCategoryManager();
-                    showToast(`✅ 成功导入 ${importedFiles.length} 个文件（不合并，保留独立）`);
+                    showToast(`✅ 成功导入 ${importedCount} 个文件（不合并，保留独立）`);
                     saveToLocalStorage();
                 } catch (err) {
                     showToast(`❌ 导入失败：${err.message}`);
@@ -2023,7 +2029,6 @@
                 });
                 actions.appendChild(deleteBtn);
 
-                // 合并按钮 (跨文件)
                 const mergeBtn = document.createElement('button');
                 mergeBtn.className = 'merge-btn';
                 mergeBtn.textContent = '🔀';
@@ -2345,7 +2350,6 @@
         locCancelBtn.addEventListener('click', closeLocationDialog);
         locMoveBtn.addEventListener('click', handleLocationMove);
 
-        // 合并对话框事件 (跨文件)
         mergeCancelBtn.addEventListener('click', closeMergeDialog);
         mergeConfirmBtn.addEventListener('click', handleMergeConfirm);
 
