@@ -795,6 +795,13 @@
             white-space: nowrap;
             min-width: 0;
         }
+        .tree-node .node-content .time-stamp {
+            font-size: 9px;
+            color: var(--text-muted);
+            flex-shrink: 0;
+            margin-left: 4px;
+            opacity: 0.7;
+        }
         .tree-node .node-content .label.disabled {
             color: var(--text-muted);
             text-decoration: line-through;
@@ -1999,7 +2006,7 @@
         </div>
     </div>
 
-    <!-- 合并文件对话框（含重命名输入） -->
+    <!-- 合并文件对话框 -->
     <div class="merge-file-dialog" id="mergeFileDialog">
         <div class="dialog-box">
             <h3>🔀 合并文件</h3>
@@ -2073,6 +2080,7 @@
                 <li><strong>文件合并（含重命名）</strong>：左侧文件树每个文件节点旁的 🔀 按钮，可将整个文件合并到另一个文件，并支持在合并时重命名目标文件（默认为源文件名）。</li>
                 <li><strong>导入不合并</strong>：导入同名文件或分类时，不会合并，而是新增独立文件/分类（允许重名）。</li>
                 <li><strong>导出/导入兼容</strong>：导出的词库文件可正常导入，支持单文件数组格式和旧版单对象格式。</li>
+                <li><strong>文件时间戳</strong>：每个文件夹名称后显示最后一次修改的时间（导入时显示文件的保存时间）。</li>
             </ul>
         </div>
 
@@ -2218,8 +2226,31 @@
         let tagLocations = {};
         let appearanceSet = new Set();
 
+        // 格式化时间戳
+        function formatTime(ts) {
+            if (!ts) return '未知';
+            const d = new Date(ts);
+            const pad = n => String(n).padStart(2, '0');
+            return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+        }
+
+        // 更新文件的修改时间
+        function updateFileTimestamp(fileIdx) {
+            if (fileIdx !== undefined && fileData[fileIdx]) {
+                fileData[fileIdx].lastModified = Date.now();
+            }
+        }
+
+        // 在文件修改操作后调用此函数更新对应文件的时间戳
+        function markFileModified(fileIdx) {
+            updateFileTimestamp(fileIdx);
+            saveToLocalStorage();
+            renderSidebar(); // 刷新侧边栏显示
+        }
+
         const defaultFile = {
             fileName: "默认词库",
+            lastModified: Date.now(),
             categories: [
                 { name: "发色", enabled: true, tags: [
                         { tag: "black_hair", added: 1640000000000 }, { tag: "blonde_hair", added: 1640000000001 },
@@ -2490,7 +2521,6 @@
         const mergeCancelBtn = document.getElementById('mergeCancelBtn');
         let mergeSourceData = null;
 
-        // 文件合并相关
         const mergeFileDialog = document.getElementById('mergeFileDialog');
         const mergeFileSourceName = document.getElementById('mergeFileSourceName');
         const mergeFileTargetSelect = document.getElementById('mergeFileTargetSelect');
@@ -2822,7 +2852,7 @@
             showToast(`分类 "${name}" 已创建`);
             renderSidebar();
             renderAllCategoryFolds();
-            saveToLocalStorage();
+            markFileModified(currentFileIndex);
         }
 
         function handleAddTag() {
@@ -2844,9 +2874,9 @@
             updateUI();
             renderSidebar();
             renderAllCategoryFolds();
+            markFileModified(currentFileIndex);
             showToast(`✅ "${pendingTag}" 已添加到分类 "${selectedCategory}"`);
             closeAddTagDialog();
-            saveToLocalStorage();
         }
 
         let manageTag = null;
@@ -2906,7 +2936,7 @@
             showToast(`分类 "${name}" 已创建`);
             renderSidebar();
             renderAllCategoryFolds();
-            saveToLocalStorage();
+            markFileModified(currentFileIndex);
         }
 
         function handleManageSave() {
@@ -2939,9 +2969,11 @@
             updateUI();
             renderSidebar();
             renderAllCategoryFolds();
+            // 更新源文件和目标文件的时间戳
+            markFileModified(manageTagLocation.fileIdx);
+            markFileModified(targetFileIdx);
             showToast(`✅ 标签 "${manageTag}" 已移至分类 "${catName}" (文件: ${targetFile.fileName})`);
             closeManageDialog();
-            saveToLocalStorage();
         }
 
         function handleManageDelete() {
@@ -2958,9 +2990,9 @@
             updateUI();
             renderSidebar();
             renderAllCategoryFolds();
+            markFileModified(manageTagLocation.fileIdx);
             showToast(`🗑️ 标签 "${manageTag}" 已从词库删除`);
             closeManageDialog();
-            saveToLocalStorage();
         }
 
         function openLocationDialog(tag) {
@@ -3053,9 +3085,11 @@
             updateUI();
             renderSidebar();
             renderAllCategoryFolds();
+            // 更新源文件（第一个位置）和目标文件的时间戳
+            markFileModified(locs[0].fileIdx);
+            markFileModified(targetFileIdx);
             showToast(`✅ 已移动重复标签 "${currentLocTag.tag}" 到分类 "${catName}"，并移除其他重复项`);
             closeLocationDialog();
-            saveToLocalStorage();
         }
 
         function openMergeDialog(fileIdx, catIdx) {
@@ -3158,12 +3192,14 @@
                 currentFileIndex = Math.max(0, fileData.length - 1);
             }
 
+            // 更新源文件和目标文件的时间戳
+            markFileModified(fileIdx);
+            markFileModified(targetFileIdx);
+
             showToast(`✅ 分类已成功合并到 "[${targetFile.fileName}] ${targetCat.name}"`);
             closeMergeDialog();
-            saveToLocalStorage();
         }
 
-        // ==== 文件合并函数（含重命名） ====
         function openMergeFileDialog(fileIdx) {
             if (fileData.length < 2) {
                 showToast('至少需要两个文件才能合并');
@@ -3172,7 +3208,6 @@
             mergeFileSourceIdx = fileIdx;
             const sourceFile = fileData[fileIdx];
             mergeFileSourceName.textContent = `[${sourceFile.fileName}]`;
-            // 设置默认新名称为源文件名
             mergeFileNewName.value = sourceFile.fileName;
 
             mergeFileTargetSelect.innerHTML = '';
@@ -3214,7 +3249,6 @@
                 return;
             }
 
-            // 遍历源文件的所有分类
             sourceFile.categories.forEach(sourceCat => {
                 let targetCat = targetFile.categories.find(c => c.name === sourceCat.name);
                 if (targetCat) {
@@ -3233,20 +3267,18 @@
                 }
             });
 
-            // 重命名目标文件
             targetFile.fileName = newName;
+            // 目标文件时间戳更新
+            targetFile.lastModified = Date.now();
 
-            // 删除源文件
             fileData.splice(sourceIdx, 1);
 
-            // 更新索引
             if (currentFileIndex === sourceIdx) {
                 currentFileIndex = Math.min(targetIdx, fileData.length - 1);
             } else if (currentFileIndex > sourceIdx) {
                 currentFileIndex--;
             }
 
-            // 清理折叠状态
             const keys = Object.keys(foldState);
             keys.forEach(key => {
                 const idx = parseInt(key.split('_')[0]);
@@ -3258,7 +3290,6 @@
                     delete foldState[key];
                 }
             });
-            // 清理展开状态
             const expKeys = Object.keys(expandedFiles);
             expKeys.forEach(k => {
                 const idx = parseInt(k);
@@ -3303,8 +3334,8 @@
             foldState[key] = true;
             renderSidebar();
             renderAllCategoryFolds();
+            markFileModified(currentFileIndex);
             showToast(`分类 "${name}" 已创建`);
-            saveToLocalStorage();
         }
 
         function exportDictionary() {
@@ -3368,6 +3399,7 @@
         function handleImportFile(event) {
             const file = event.target.files[0];
             if (!file) return;
+            const fileLastModified = file.lastModified || Date.now();
             const reader = new FileReader();
             reader.onload = function(e) {
                 try {
@@ -3395,6 +3427,7 @@
                     imported.forEach(impFile => {
                         const newFile = {
                             fileName: impFile.fileName,
+                            lastModified: fileLastModified, // 使用文件本身的修改时间
                             categories: impFile.categories.map(cat => ({
                                 name: cat.name,
                                 enabled: cat.enabled !== undefined ? cat.enabled : true,
@@ -3416,7 +3449,7 @@
                     currentFileIndex = fileData.length - 1;
                     renderCategoryManager();
                     updateUI();
-                    showToast(`✅ 成功导入 ${importedCount} 个文件`);
+                    showToast(`✅ 成功导入 ${importedCount} 个文件（时间戳已记录）`);
                     saveToLocalStorage();
                 } catch (err) {
                     showToast(`❌ 导入失败：${err.message}`);
@@ -3500,9 +3533,9 @@
                     updateUI();
                     renderSidebar();
                     renderAllCategoryFolds();
+                    markFileModified(idx);
                     showToast(checked ? `文件 "${file.fileName}" 下所有分类已启用` :
                         `文件 "${file.fileName}" 下所有分类已禁用`);
-                    saveToLocalStorage();
                 });
                 fileContent.appendChild(fileCheckbox);
 
@@ -3515,6 +3548,12 @@
                 label.className = 'label';
                 label.textContent = file.fileName;
                 fileContent.appendChild(label);
+
+                // 显示时间戳
+                const timeSpan = document.createElement('span');
+                timeSpan.className = 'time-stamp';
+                timeSpan.textContent = formatTime(file.lastModified);
+                fileContent.appendChild(timeSpan);
 
                 const totalTags = file.categories.reduce((sum, c) => sum + c.tags.length, 0);
                 const badge = document.createElement('span');
@@ -3627,9 +3666,9 @@
                             updateUI();
                             renderSidebar();
                             renderAllCategoryFolds();
+                            markFileModified(idx);
                             showToast(this.checked ? `分类 "${cat.name}" 已启用` :
                                 `分类 "${cat.name}" 已禁用`);
-                            saveToLocalStorage();
                         });
                         catContent.appendChild(enableCheck);
 
@@ -3804,8 +3843,8 @@
                     updateUI();
                     renderAllCategoryFolds();
                     renderSidebar();
+                    markFileModified(currentFileIndex);
                     showToast(this.checked ? `分类 "${cat.name}" 已启用` : `分类 "${cat.name}" 已禁用`);
-                    saveToLocalStorage();
                 });
                 header.appendChild(enableCheck);
 
@@ -3830,6 +3869,7 @@
                     e.stopPropagation();
                     cat.sortMode = this.value;
                     renderAllCategoryFolds();
+                    markFileModified(currentFileIndex);
                     saveToLocalStorage();
                     showToast(`分类 "${cat.name}" 排序方式已更新`);
                 });
@@ -3856,8 +3896,8 @@
                     cat.name = newName;
                     renderSidebar();
                     renderAllCategoryFolds();
+                    markFileModified(currentFileIndex);
                     showToast('分类已重命名');
-                    saveToLocalStorage();
                 });
                 actions.appendChild(renameBtn);
 
@@ -3876,8 +3916,8 @@
                     updateUI();
                     renderSidebar();
                     renderAllCategoryFolds();
+                    markFileModified(currentFileIndex);
                     showToast('分类已删除');
-                    saveToLocalStorage();
                 });
                 actions.appendChild(deleteBtn);
 
@@ -3988,8 +4028,8 @@
                         updateUI();
                         renderSidebar();
                         renderAllCategoryFolds();
+                        markFileModified(currentFileIndex);
                         showToast('标签已删除');
-                        saveToLocalStorage();
                     }
                 });
                 actions.appendChild(delBtn);
@@ -4045,7 +4085,7 @@
             if (fileData.some(f => f.fileName === name)) {
                 if (!confirm(`文件 "${name}" 已存在，是否继续创建同名文件？`)) return;
             }
-            fileData.push({ fileName: name, categories: [] });
+            fileData.push({ fileName: name, lastModified: Date.now(), categories: [] });
             currentFileIndex = fileData.length - 1;
             expandedFiles[currentFileIndex] = true;
             renderCategoryManager();
@@ -4063,9 +4103,9 @@
                 if (!confirm(`文件 "${newName}" 已存在，是否继续重命名？`)) return;
             }
             currentFile.fileName = newName;
+            markFileModified(currentFileIndex);
             renderCategoryManager();
             showToast('文件已重命名');
-            saveToLocalStorage();
         }
 
         function deleteFile() {
