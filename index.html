@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Danbooru 标签筛选器</title>
     <style>
-        /* ===== 全局重置 & 基础 ===== */
         *,
         *::before,
         *::after {
@@ -57,7 +56,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ===== 容器 ===== */
         .container {
             max-width: 1000px;
             width: 100%;
@@ -69,7 +67,6 @@
             position: relative;
         }
 
-        /* ===== 头部 ===== */
         .header-row {
             display: flex;
             align-items: center;
@@ -77,7 +74,6 @@
             gap: 4px 8px;
             margin-bottom: 2px;
         }
-
         h1 {
             font-size: clamp(20px, 5vw, 28px);
             font-weight: 600;
@@ -98,7 +94,6 @@
             font-weight: 500;
             white-space: nowrap;
         }
-
         .header-credit {
             font-size: clamp(11px, 2.2vw, 13px);
             color: var(--text-secondary);
@@ -113,7 +108,6 @@
         .header-credit a:hover {
             text-decoration: underline;
         }
-
         .follow-btn {
             background: var(--warning);
             border: none;
@@ -141,7 +135,6 @@
             transform: scale(0.96);
         }
 
-        /* ===== 帮助面板 ===== */
         .help-toggle-area {
             margin-bottom: 6px;
             display: flex;
@@ -160,7 +153,6 @@
             font-size: clamp(11px, 2vw, 13px);
             color: var(--text-muted);
         }
-
         .help-panel {
             background: var(--bg-card);
             border-radius: var(--radius-sm);
@@ -196,7 +188,6 @@
             margin-bottom: 1px;
         }
 
-        /* ===== 控制栏 ===== */
         .control-bar {
             display: flex;
             flex-wrap: wrap;
@@ -244,7 +235,6 @@
             touch-action: manipulation;
         }
 
-        /* ===== 翻译行 ===== */
         .translation-row {
             display: flex;
             align-items: center;
@@ -280,7 +270,6 @@
             border-color: var(--accent);
         }
 
-        /* ===== 输入框 ===== */
         textarea {
             width: 100%;
             min-height: 80px;
@@ -309,7 +298,6 @@
             opacity: 0.6;
         }
 
-        /* ===== 按钮组 ===== */
         .btn-group {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -376,7 +364,6 @@
             background: #074b9c;
         }
 
-        /* ===== 统计信息 ===== */
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -399,7 +386,6 @@
             font-weight: 500;
         }
 
-        /* ===== 结果区域 ===== */
         .result-area {
             margin-top: 10px;
         }
@@ -419,7 +405,6 @@
             font-size: clamp(11px, 2vw, 13px);
             color: var(--text-muted);
         }
-
         .result-box {
             background: var(--bg-input);
             border-radius: var(--radius-sm);
@@ -440,7 +425,6 @@
             font-size: clamp(13px, 2.6vw, 15px);
         }
 
-        /* ===== 标签卡片 (结果) ===== */
         .tag-item {
             display: flex;
             flex-wrap: wrap;
@@ -576,7 +560,6 @@
             border-color: transparent;
         }
 
-        /* ===== 页脚 ===== */
         .footer {
             margin-top: 14px;
             font-size: clamp(11px, 2vw, 13px);
@@ -597,7 +580,6 @@
             text-decoration: underline;
         }
 
-        /* ===== 模态框 (词库管理) ===== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -672,7 +654,6 @@
             overflow: hidden;
         }
 
-        /* ===== 侧边栏 (文件树) ===== */
         .file-sidebar {
             width: 280px;
             min-width: 200px;
@@ -847,6 +828,23 @@
         .tree-node.category-node .node-content .icon {
             font-size: 12px;
         }
+        .tree-node .node-content .file-merge-btn {
+            background: none;
+            border: none;
+            color: #a78bfa;
+            font-size: 13px;
+            cursor: pointer;
+            padding: 0 2px;
+            line-height: 1;
+            transition: color 0.2s, transform 0.2s;
+            touch-action: manipulation;
+            min-height: 24px;
+            min-width: 20px;
+        }
+        .tree-node .node-content .file-merge-btn:hover {
+            color: #fdcb6e;
+            transform: scale(1.2);
+        }
 
         .file-sidebar .sidebar-footer {
             padding: 4px 6px;
@@ -873,7 +871,6 @@
             background: #4e4e72;
         }
 
-        /* ===== 右侧内容 ===== */
         .file-content {
             flex: 1;
             background: var(--bg-input);
@@ -965,7 +962,6 @@
             border-radius: 10px;
         }
 
-        /* ===== 分类折叠面板 ===== */
         .category-fold {
             border: 1px solid var(--border-color);
             border-radius: var(--radius-xs);
@@ -1090,7 +1086,6 @@
         .category-fold .fold-header .fold-actions .sort-select:focus {
             border-color: var(--accent);
         }
-
         .category-fold .fold-body {
             padding: 4px 8px 6px 8px;
             display: flex;
@@ -1103,7 +1098,6 @@
             display: none;
         }
 
-        /* ===== 标签卡片 (管理) ===== */
         .tag-card {
             display: inline-flex;
             flex-wrap: wrap;
@@ -1196,7 +1190,6 @@
             text-align: center;
         }
 
-        /* ===== 模态框底部 ===== */
         .modal-footer {
             margin-top: 8px;
             display: flex;
@@ -1219,12 +1212,12 @@
             color: #fff;
         }
 
-        /* ===== 对话框 ===== */
         .add-tag-dialog,
         .tag-manage-dialog,
         .tag-location-dialog,
         .merge-dialog,
-        .export-select-dialog {
+        .export-select-dialog,
+        .merge-file-dialog {
             display: none;
             position: fixed;
             top: 0;
@@ -1242,7 +1235,8 @@
         .tag-manage-dialog.active,
         .tag-location-dialog.active,
         .merge-dialog.active,
-        .export-select-dialog.active {
+        .export-select-dialog.active,
+        .merge-file-dialog.active {
             display: flex;
         }
 
@@ -1424,7 +1418,6 @@
             margin-bottom: 8px;
         }
 
-        /* ===== Toast ===== */
         .toast {
             position: fixed;
             bottom: 20px;
@@ -1447,13 +1440,10 @@
         .toast.show {
             opacity: 1;
         }
-
-        /* ===== 隐藏 ===== */
         #importFileInput {
             display: none;
         }
 
-        /* ===== 响应式 ===== */
         @media (max-width: 820px) {
             .modal-body {
                 flex-direction: column;
@@ -1503,7 +1493,6 @@
                 padding-left: 14px;
             }
         }
-
         @media (max-width: 640px) {
             body {
                 padding: 6px;
@@ -1773,7 +1762,6 @@
                 gap: 6px 10px;
             }
         }
-
         @media (max-width: 420px) {
             body {
                 padding: 3px;
@@ -1923,7 +1911,6 @@
                 min-height: 28px;
             }
         }
-
         @supports (-webkit-touch-callout: none) {
             input,
             select,
@@ -1996,7 +1983,7 @@
         </div>
     </div>
 
-    <!-- 合并对话框 (跨文件) -->
+    <!-- 合并分类对话框 -->
     <div class="merge-dialog" id="mergeDialog">
         <div class="dialog-box">
             <h3>🔀 合并分类（可跨文件）</h3>
@@ -2008,6 +1995,24 @@
             <div class="btn-row">
                 <button class="btn-cancel" id="mergeCancelBtn">取消</button>
                 <button class="btn-confirm" id="mergeConfirmBtn">确认合并</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 合并文件对话框（含重命名输入） -->
+    <div class="merge-file-dialog" id="mergeFileDialog">
+        <div class="dialog-box">
+            <h3>🔀 合并文件</h3>
+            <p style="color:#a0a0c0;font-size:clamp(13px,2.6vw,14px);margin-bottom:8px;">
+                将 <strong id="mergeFileSourceName"></strong> 的所有分类合并到目标文件（同名分类将合并标签，源文件将被删除）
+            </p>
+            <label for="mergeFileTargetSelect">选择目标文件：</label>
+            <select id="mergeFileTargetSelect"></select>
+            <label style="margin-top:8px;">合并后目标文件的新名称（默认为源文件名）：</label>
+            <input type="text" id="mergeFileNewName" placeholder="输入新文件名">
+            <div class="btn-row">
+                <button class="btn-cancel" id="mergeFileCancelBtn">取消</button>
+                <button class="btn-confirm" id="mergeFileConfirmBtn">确认合并</button>
             </div>
         </div>
     </div>
@@ -2065,6 +2070,7 @@
                 <li><strong>重复标签提示</strong>：分类下存在重复标签时，分类名称文字变红。</li>
                 <li><strong>拖拽排序</strong>：文件之间、同一文件下的分类之间均可拖拽调整顺序。</li>
                 <li><strong>分类合并（跨文件）</strong>：右侧每个分类头部有 🔀 合并按钮，可将当前分类合并到任意其他文件中的分类。</li>
+                <li><strong>文件合并（含重命名）</strong>：左侧文件树每个文件节点旁的 🔀 按钮，可将整个文件合并到另一个文件，并支持在合并时重命名目标文件（默认为源文件名）。</li>
                 <li><strong>导入不合并</strong>：导入同名文件或分类时，不会合并，而是新增独立文件/分类（允许重名）。</li>
                 <li><strong>导出/导入兼容</strong>：导出的词库文件可正常导入，支持单文件数组格式和旧版单对象格式。</li>
             </ul>
@@ -2389,15 +2395,12 @@
                 if (data.stripSpace !== undefined) document.getElementById('stripSpace').checked = data.stripSpace;
                 if (data.addTrailingDelim !== undefined) document.getElementById('addTrailingDelim').checked = data
                     .addTrailingDelim;
-                // 独立读取两个翻译选项，互不影响
                 if (data.showTranslation !== undefined) {
                     document.getElementById('showTranslation').checked = data.showTranslation;
                 }
                 if (data.showTranslationModal !== undefined) {
                     document.getElementById('showTranslationModal').checked = data.showTranslationModal;
                 } else {
-                    // 兼容旧数据：如果从未保存过 showTranslationModal，则默认与主页同步一次
-                    // 但为了真正的独立，仅当旧数据没有此字段时才这样做
                     document.getElementById('showTranslationModal').checked = document.getElementById('showTranslation')
                         .checked;
                 }
@@ -2486,6 +2489,15 @@
         const mergeConfirmBtn = document.getElementById('mergeConfirmBtn');
         const mergeCancelBtn = document.getElementById('mergeCancelBtn');
         let mergeSourceData = null;
+
+        // 文件合并相关
+        const mergeFileDialog = document.getElementById('mergeFileDialog');
+        const mergeFileSourceName = document.getElementById('mergeFileSourceName');
+        const mergeFileTargetSelect = document.getElementById('mergeFileTargetSelect');
+        const mergeFileNewName = document.getElementById('mergeFileNewName');
+        const mergeFileConfirmBtn = document.getElementById('mergeFileConfirmBtn');
+        const mergeFileCancelBtn = document.getElementById('mergeFileCancelBtn');
+        let mergeFileSourceIdx = null;
 
         const toast = document.getElementById('toast');
         let toastTimer;
@@ -3151,6 +3163,125 @@
             saveToLocalStorage();
         }
 
+        // ==== 文件合并函数（含重命名） ====
+        function openMergeFileDialog(fileIdx) {
+            if (fileData.length < 2) {
+                showToast('至少需要两个文件才能合并');
+                return;
+            }
+            mergeFileSourceIdx = fileIdx;
+            const sourceFile = fileData[fileIdx];
+            mergeFileSourceName.textContent = `[${sourceFile.fileName}]`;
+            // 设置默认新名称为源文件名
+            mergeFileNewName.value = sourceFile.fileName;
+
+            mergeFileTargetSelect.innerHTML = '';
+            fileData.forEach((f, idx) => {
+                if (idx === fileIdx) return;
+                const opt = document.createElement('option');
+                opt.value = idx;
+                opt.textContent = f.fileName + ` (${f.categories.length} 个分类)`;
+                mergeFileTargetSelect.appendChild(opt);
+            });
+            mergeFileTargetSelect.disabled = false;
+            mergeFileDialog.classList.add('active');
+        }
+
+        function closeMergeFileDialog() {
+            mergeFileDialog.classList.remove('active');
+            mergeFileSourceIdx = null;
+            mergeFileNewName.value = '';
+        }
+
+        function handleMergeFileConfirm() {
+            const targetIdx = parseInt(mergeFileTargetSelect.value);
+            if (isNaN(targetIdx) || targetIdx === mergeFileSourceIdx || targetIdx < 0 || targetIdx >= fileData.length) {
+                showToast('请选择有效的目标文件');
+                return;
+            }
+            const sourceIdx = mergeFileSourceIdx;
+            const sourceFile = fileData[sourceIdx];
+            const targetFile = fileData[targetIdx];
+            const newName = mergeFileNewName.value.trim();
+            if (!newName) {
+                showToast('请输入新文件名');
+                return;
+            }
+
+            if (!confirm(
+                    `确认将文件 "[${sourceFile.fileName}]" 的所有分类合并到 "[${targetFile.fileName}]" 吗？\n同名分类将合并标签，源文件将被删除。\n目标文件将重命名为 "${newName}"。`
+                    )) {
+                return;
+            }
+
+            // 遍历源文件的所有分类
+            sourceFile.categories.forEach(sourceCat => {
+                let targetCat = targetFile.categories.find(c => c.name === sourceCat.name);
+                if (targetCat) {
+                    sourceCat.tags.forEach(tagObj => {
+                        if (!targetCat.tags.some(t => t.tag.toLowerCase() === tagObj.tag.toLowerCase())) {
+                            targetCat.tags.push(tagObj);
+                        }
+                    });
+                } else {
+                    targetFile.categories.push({
+                        name: sourceCat.name,
+                        enabled: sourceCat.enabled,
+                        tags: sourceCat.tags.slice(),
+                        sortMode: sourceCat.sortMode || 'alphabetical'
+                    });
+                }
+            });
+
+            // 重命名目标文件
+            targetFile.fileName = newName;
+
+            // 删除源文件
+            fileData.splice(sourceIdx, 1);
+
+            // 更新索引
+            if (currentFileIndex === sourceIdx) {
+                currentFileIndex = Math.min(targetIdx, fileData.length - 1);
+            } else if (currentFileIndex > sourceIdx) {
+                currentFileIndex--;
+            }
+
+            // 清理折叠状态
+            const keys = Object.keys(foldState);
+            keys.forEach(key => {
+                const idx = parseInt(key.split('_')[0]);
+                if (idx === sourceIdx) {
+                    delete foldState[key];
+                } else if (idx > sourceIdx) {
+                    const newKey = key.replace(/^\d+/, String(idx - 1));
+                    foldState[newKey] = foldState[key];
+                    delete foldState[key];
+                }
+            });
+            // 清理展开状态
+            const expKeys = Object.keys(expandedFiles);
+            expKeys.forEach(k => {
+                const idx = parseInt(k);
+                if (idx === sourceIdx) {
+                    delete expandedFiles[k];
+                } else if (idx > sourceIdx) {
+                    expandedFiles[String(idx - 1)] = expandedFiles[k];
+                    delete expandedFiles[k];
+                }
+            });
+
+            buildTagLocations();
+            buildAppearanceSet();
+            updateUI();
+            renderSidebar();
+            renderAllCategoryFolds();
+            updateCurrentFileTitle();
+
+            showToast(`✅ 文件已成功合并，目标文件已重命名为 "${newName}"`);
+            closeMergeFileDialog();
+            saveToLocalStorage();
+        }
+
         function addCategoryToCurrentFile() {
             if (fileData.length === 0) {
                 showToast('请先创建文件');
@@ -3391,9 +3522,19 @@
                 badge.textContent = totalTags;
                 fileContent.appendChild(badge);
 
+                const mergeFileBtn = document.createElement('button');
+                mergeFileBtn.className = 'file-merge-btn';
+                mergeFileBtn.textContent = '🔀';
+                mergeFileBtn.title = '合并此文件到另一个文件（可重命名目标文件）';
+                mergeFileBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    openMergeFileDialog(idx);
+                });
+                fileContent.appendChild(mergeFileBtn);
+
                 fileContent.addEventListener('click', function(e) {
                     if (e.target.closest('.toggle-btn') || e.target.closest('.file-enable-check') || e
-                        .target.closest('.cat-enable-check')) return;
+                        .target.closest('.cat-enable-check') || e.target.closest('.file-merge-btn')) return;
                     currentFileIndex = idx;
                     expandedFiles[idx] = true;
                     renderSidebar();
@@ -3999,13 +4140,11 @@
         stripSpaceCheck.addEventListener('change', function() { saveToLocalStorage(); });
         addTrailingCheck.addEventListener('change', function() { saveToLocalStorage(); });
 
-        // 主页翻译开关 - 独立控制
         showTranslationCheck.addEventListener('change', function() {
             if (currentTags.length) renderTagItems(currentTags);
             saveToLocalStorage();
         });
 
-        // 词库管理翻译开关 - 独立控制
         showTranslationModal.addEventListener('change', function() {
             renderAllCategoryFolds();
             saveToLocalStorage();
@@ -4079,6 +4218,12 @@
         mergeCancelBtn.addEventListener('click', closeMergeDialog);
         mergeConfirmBtn.addEventListener('click', handleMergeConfirm);
 
+        mergeFileCancelBtn.addEventListener('click', closeMergeFileDialog);
+        mergeFileConfirmBtn.addEventListener('click', handleMergeFileConfirm);
+        mergeFileDialog.addEventListener('click', function(e) {
+            if (e.target === mergeFileDialog) closeMergeFileDialog();
+        });
+
         const toggleHelpBtn = document.getElementById('toggleHelpBtn');
         const helpPanel = document.getElementById('helpPanel');
         toggleHelpBtn.addEventListener('click', function() {
@@ -4092,6 +4237,7 @@
                 closeManageDialog();
                 closeLocationDialog();
                 closeMergeDialog();
+                closeMergeFileDialog();
                 closeExportSelectDialog();
                 closeModal();
             }
@@ -4123,11 +4269,6 @@
                 if (currentFileIndex >= fileData.length) currentFileIndex = 0;
                 if (!expandedFiles[currentFileIndex]) expandedFiles[currentFileIndex] = true;
             }
-
-            // ★★★ 修复关键点：移除强制同步逻辑，两个翻译选项完全独立 ★★★
-            // 不再执行： const showTrans = document.getElementById('showTranslation').checked;
-            // 不再执行： document.getElementById('showTranslationModal').checked = showTrans;
-
             renderCategoryManager();
             initDragDrop();
             updateUI();
