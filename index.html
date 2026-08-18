@@ -2389,12 +2389,15 @@
                 if (data.stripSpace !== undefined) document.getElementById('stripSpace').checked = data.stripSpace;
                 if (data.addTrailingDelim !== undefined) document.getElementById('addTrailingDelim').checked = data
                     .addTrailingDelim;
+                // 独立读取两个翻译选项，互不影响
                 if (data.showTranslation !== undefined) {
                     document.getElementById('showTranslation').checked = data.showTranslation;
                 }
                 if (data.showTranslationModal !== undefined) {
                     document.getElementById('showTranslationModal').checked = data.showTranslationModal;
                 } else {
+                    // 兼容旧数据：如果从未保存过 showTranslationModal，则默认与主页同步一次
+                    // 但为了真正的独立，仅当旧数据没有此字段时才这样做
                     document.getElementById('showTranslationModal').checked = document.getElementById('showTranslation')
                         .checked;
                 }
@@ -2826,7 +2829,6 @@
             cat.tags.push({ tag: pendingTag, added: Date.now() });
             buildTagLocations();
             buildAppearanceSet();
-            // 实时刷新输出栏
             updateUI();
             renderSidebar();
             renderAllCategoryFolds();
@@ -3282,7 +3284,6 @@
                     buildAppearanceSet();
                     currentFileIndex = fileData.length - 1;
                     renderCategoryManager();
-                    // 刷新输出栏
                     updateUI();
                     showToast(`✅ 成功导入 ${importedCount} 个文件`);
                     saveToLocalStorage();
@@ -3365,7 +3366,6 @@
                         cat.enabled = checked;
                     });
                     buildAppearanceSet();
-                    // 实时刷新输出栏
                     updateUI();
                     renderSidebar();
                     renderAllCategoryFolds();
@@ -3483,7 +3483,6 @@
                             e.stopPropagation();
                             cat.enabled = this.checked;
                             buildAppearanceSet();
-                            // 实时刷新输出栏
                             updateUI();
                             renderSidebar();
                             renderAllCategoryFolds();
@@ -3661,7 +3660,6 @@
                     e.stopPropagation();
                     cat.enabled = this.checked;
                     buildAppearanceSet();
-                    // 实时刷新输出栏
                     updateUI();
                     renderAllCategoryFolds();
                     renderSidebar();
@@ -3734,7 +3732,6 @@
                     file.categories.splice(idx, 1);
                     buildTagLocations();
                     buildAppearanceSet();
-                    // 刷新输出栏
                     updateUI();
                     renderSidebar();
                     renderAllCategoryFolds();
@@ -4002,11 +3999,13 @@
         stripSpaceCheck.addEventListener('change', function() { saveToLocalStorage(); });
         addTrailingCheck.addEventListener('change', function() { saveToLocalStorage(); });
 
+        // 主页翻译开关 - 独立控制
         showTranslationCheck.addEventListener('change', function() {
             if (currentTags.length) renderTagItems(currentTags);
             saveToLocalStorage();
         });
 
+        // 词库管理翻译开关 - 独立控制
         showTranslationModal.addEventListener('change', function() {
             renderAllCategoryFolds();
             saveToLocalStorage();
@@ -4124,8 +4123,11 @@
                 if (currentFileIndex >= fileData.length) currentFileIndex = 0;
                 if (!expandedFiles[currentFileIndex]) expandedFiles[currentFileIndex] = true;
             }
-            const showTrans = document.getElementById('showTranslation').checked;
-            document.getElementById('showTranslationModal').checked = showTrans;
+
+            // ★★★ 修复关键点：移除强制同步逻辑，两个翻译选项完全独立 ★★★
+            // 不再执行： const showTrans = document.getElementById('showTranslation').checked;
+            // 不再执行： document.getElementById('showTranslationModal').checked = showTrans;
+
             renderCategoryManager();
             initDragDrop();
             updateUI();
